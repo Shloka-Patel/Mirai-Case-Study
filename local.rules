@@ -1,0 +1,4 @@
+# Teaching rules from Section 4.8 (Snort 2 syntax). Thresholds are illustrative.
+# Snort 3 uses different threshold syntax; adapt before use.
+alert tcp any any -> $HOME_NET 23 (msg:"Possible Telnet scan or login flood"; flags:S; threshold:type both, track by_src, count 20, seconds 10; sid:1000001; rev:1;)
+alert udp $HOME_NET any -> any 53 (msg:"Unusually high DNS query rate"; threshold:type both, track by_src, count 200, seconds 5; sid:1000002; rev:1;)
